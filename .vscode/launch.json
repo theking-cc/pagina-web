@@ -1,0 +1,32 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [    
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Abrir index.html",
+            "file": "c:\\Users\\reina\\OneDrive\\Escritorio\\cacique\\pagina web\\cacique_blibliotecary\\caciqueblitecary\\index.html"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Abrir catalogo.html",
+            "file": "c:\\Users\\reina\\OneDrive\\Escritorio\\cacique\\pagina web\\cacique_blibliotecary\\caciqueblitecary\\catalogo.html"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Abrir panel.html",
+            "file": "c:\\Users\\reina\\OneDrive\\Escritorio\\cacique\\pagina web\\cacique_blibliotecary\\caciqueblitecary\\panel.html"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Abrir login.html",
+            "file": "c:\\Users\\reina\\OneDrive\\Escritorio\\cacique\\pagina web\\cacique_blibliotecary\\caciqueblitecary\\login.html"
+        }
+    ]
+}

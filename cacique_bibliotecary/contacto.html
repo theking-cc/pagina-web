@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto | Cacique Bibliotecary</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/contacto.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <!-- CONTACTO -->
+  <main class="contact-section">
+    <div class="contact-container">
+      <div class="contact-header">
+        <h1>¿Cómo podemos ayudarte?</h1>
+        <p>Estamos aquí para responder tus preguntas y escuchar tus sugerencias. Elige la opción que mejor se adapte a tus necesidades.</p>
+      </div>
+
+      <div class="contact-options">
+        <div class="contact-option">
+          <i class="fas fa-comments"></i>
+          <h3>Chat en Vivo</h3>
+          <p>Disponible de Lunes a Viernes<br>9:00 AM - 6:00 PM</p>
+          <button class="btn-chat" onclick="iniciarChat()">Iniciar Chat</button>
+        </div>
+
+        <div class="contact-option">
+          <i class="fas fa-phone"></i>
+          <h3>Llámanos</h3>
+          <p>+52 (123) 456-7890<br>Horario: 24/7</p>
+          <a href="tel:+521234567890" class="btn-call">Llamar ahora</a>
+        </div>
+
+        <div class="contact-option">
+          <i class="fas fa-envelope"></i>
+          <h3>Correo Electrónico</h3>
+          <p>Te respondemos en<br>menos de 24 horas</p>
+          <a href="mailto:soporte@cacique.edu" class="btn-email">Enviar correo</a>
+        </div>
+      </div>
+
+      <div class="contact-form-container">
+        <h2>Envíanos un mensaje</h2>
+        <p>Complete el formulario a continuación y nos pondremos en contacto contigo lo antes posible.</p>
+      
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input 
+              type="text" 
+              id="nombre" 
+              name="nombre" 
+              placeholder="Ingrese su nombre completo" 
+              required 
+              minlength="3"
+              maxlength="50"
+            />
+            <div class="validation-message"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="correo">Correo electrónico</label>
+            <input 
+              type="email" 
+              id="correo" 
+              name="correo" 
+              placeholder="ejemplo@dominio.com" 
+              required 
+            />
+            <div class="validation-message"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="telefono">Teléfono (opcional)</label>
+            <input 
+              type="tel" 
+              id="telefono" 
+              name="telefono" 
+              placeholder="(123) 456-7890"
+              pattern="[\d\s\-\+\(\)]+"
+            />
+            <div class="validation-message"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="tipo">Tipo de consulta</label>
+            <select id="tipo" name="tipo" required>
+              <option value="">Seleccione una opción</option>
+              <option value="prestamo">Préstamo de libros</option>
+              <option value="devolucion">Devolución</option>
+              <option value="reserva">Reservas</option>
+              <option value="tecnico">Soporte técnico</option>
+              <option value="sugerencia">Sugerencias</option>
+              <option value="otro">Otro</option>
+            </select>
+            <div class="validation-message"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="asunto">Asunto</label>
+          <input 
+            type="text" 
+            id="asunto" 
+            name="asunto" 
+            placeholder="¿Sobre qué es su consulta?" 
+            required 
+            minlength="5"
+            maxlength="100"
+          />
+          <div class="validation-message"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea 
+            id="mensaje" 
+            name="mensaje" 
+            rows="5" 
+            placeholder="Describa su pregunta o inquietud..." 
+            required
+            minlength="20"
+            maxlength="1000"
+          ></textarea>
+          <div class="char-counter"><span id="charCount">1000</span> caracteres restantes</div>
+          <div class="validation-message"></div>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="terminos" name="terminos" required>
+            He leído y acepto la <a href="#" class="link-politica">política de privacidad</a>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-submit" disabled>
+          <i class="fas fa-paper-plane"></i> Enviar mensaje
+        </button>
+      </form>
+
+      <div id="mensaje-exito" class="mensaje-exito">
+        <i class="fas fa-check-circle"></i>
+        ¡Gracias por contactarnos! Tu mensaje ha sido enviado correctamente.
+        <br>
+        Te responderemos lo antes posible.
+      </div>
+
+      <div id="mensaje-error" class="mensaje-error">
+        <i class="fas fa-exclamation-circle"></i>
+        Ha ocurrido un error al enviar el mensaje. Por favor, inténtalo de nuevo.
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <!-- Scripts -->
+  <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contactForm');
+      const submitButton = form.querySelector('button[type="submit"]');
+      const mensajeExito = document.getElementById('mensaje-exito');
+      const mensajeError = document.getElementById('mensaje-error');
+      const charCounter = document.getElementById('charCount');
+      const mensaje = document.getElementById('mensaje');
+      const terminos = document.getElementById('terminos');
+
+      // Validación en tiempo real
+      const validationRules = {
+        nombre: {
+          minLength: 3,
+          maxLength: 50,
+          pattern: /^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/,
+          message: 'Por favor ingrese un nombre válido'
+        },
+        correo: {
+          pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+          message: 'Por favor ingrese un correo electrónico válido'
+        },
+        telefono: {
+          pattern: /^[\d\s\-\+\(\)]{10,}$/,
+          message: 'Por favor ingrese un número de teléfono válido'
+        },
+        asunto: {
+          minLength: 5,
+          maxLength: 100,
+          message: 'El asunto debe tener entre 5 y 100 caracteres'
+        },
+        mensaje: {
+          minLength: 20,
+          maxLength: 1000,
+          message: 'El mensaje debe tener entre 20 y 1000 caracteres'
+        }
+      };
+
+      // Función para validar un campo
+      function validateField(input) {
+        const rules = validationRules[input.id];
+        const validationMessage = input.nextElementSibling;
+        let isValid = true;
+        
+        if (rules) {
+          const value = input.value.trim();
+          
+          if (rules.minLength && value.length < rules.minLength) {
+            isValid = false;
+          }
+          
+          if (rules.maxLength && value.length > rules.maxLength) {
+            isValid = false;
+          }
+          
+          if (rules.pattern && !rules.pattern.test(value)) {
+            isValid = false;
+          }
+          
+          if (!isValid && value !== '') {
+            input.parentElement.classList.add('error');
+            input.parentElement.classList.remove('success');
+            validationMessage.textContent = rules.message;
+            validationMessage.className = 'validation-message error';
+          } else if (value !== '') {
+            input.parentElement.classList.remove('error');
+            input.parentElement.classList.add('success');
+            validationMessage.textContent = '¡Correcto!';
+            validationMessage.className = 'validation-message success';
+          } else {
+            input.parentElement.classList.remove('error', 'success');
+            validationMessage.textContent = '';
+          }
+        }
+        
+        return isValid;
+      }
+
+      // Validar campos en tiempo real
+      form.querySelectorAll('input, textarea, select').forEach(input => {
+        input.addEventListener('input', () => {
+          validateField(input);
+          checkFormValidity();
+        });
+      });
+
+      // Contador de caracteres para el mensaje
+      mensaje.addEventListener('input', () => {
+        const remaining = 1000 - mensaje.value.length;
+        charCounter.textContent = remaining;
+        
+        if (remaining < 0) {
+          charCounter.style.color = '#dc3545';
+        } else if (remaining < 100) {
+          charCounter.style.color = '#ffc107';
+        } else {
+          charCounter.style.color = '#666';
+        }
+      });
+
+      // Habilitar/deshabilitar botón de envío
+      function checkFormValidity() {
+        const isValid = Array.from(form.elements).every(element => {
+          if (element.required) {
+            return element.value.trim() !== '' && !element.parentElement.classList.contains('error');
+          }
+          return true;
+        });
+        
+        submitButton.disabled = !isValid || !terminos.checked;
+      }
+
+      terminos.addEventListener('change', checkFormValidity);
+
+      // Manejar envío del formulario
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+
+        try {
+          const formData = {
+            nombre: form.nombre.value.trim(),
+            correo: form.correo.value.trim(),
+            telefono: form.telefono.value.trim(),
+            tipo: form.tipo.value,
+            asunto: form.asunto.value.trim(),
+            mensaje: form.mensaje.value.trim(),
+            fecha: new Date().toLocaleString()
+          };
+
+          // Guardar en localStorage
+          let mensajesGuardados = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
+          mensajesGuardados.push(formData);
+          localStorage.setItem('mensajesContacto', JSON.stringify(mensajesGuardados));
+
+          // Simular delay de red
+          await new Promise(resolve => setTimeout(resolve, 1000));
+
+          // Mostrar mensaje de éxito
+          form.reset();
+          mensajeExito.style.display = 'block';
+          submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar mensaje';
+          
+          // Resetear estados de validación
+          form.querySelectorAll('.form-group').forEach(group => {
+            group.classList.remove('success', 'error');
+          });
+          
+          setTimeout(() => {
+            mensajeExito.style.display = 'none';
+          }, 5000);
+
+        } catch (error) {
+          console.error('Error:', error);
+          mensajeError.style.display = 'block';
+          submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar mensaje';
+          submitButton.disabled = false;
+          
+          setTimeout(() => {
+            mensajeError.style.display = 'none';
+          }, 5000);
+        }
+      });
+
+      // Función para iniciar chat (simulado)
+      window.iniciarChat = function() {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `
+          <i class="fas fa-info-circle"></i>
+          El chat se iniciará en breve...
+        `;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+          notification.remove();
+        }, 3000);
+      };
+    });
+  </script>
+</body>
+</html>

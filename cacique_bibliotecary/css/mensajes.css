@@ -1,0 +1,314 @@
+/* Estilos para el sistema de mensajes */
+.mensajes-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.mensajes-header {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mensajes-titulo {
+    color: #333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mensajes-titulo .icon {
+    font-size: 1.5rem;
+}
+
+.mensajes-controles {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.mensaje-filtro {
+    padding: 0.5rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    min-width: 150px;
+}
+
+/* Lista de mensajes */
+.mensajes-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mensaje-item {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    border-left: 4px solid transparent;
+}
+
+.mensaje-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.mensaje-item.no-leido {
+    border-left-color: #8B4513;
+    background-color: #fff9f5;
+}
+
+.mensaje-item.urgente {
+    border-left-color: #dc3545;
+}
+
+.mensaje-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.mensaje-info {
+    flex: 1;
+}
+
+.mensaje-remitente {
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mensaje-fecha {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.mensaje-acciones {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.mensaje-accion {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #666;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.mensaje-accion:hover {
+    background-color: rgba(0,0,0,0.05);
+    color: #333;
+}
+
+.mensaje-contenido {
+    color: #444;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.mensaje-etiquetas {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.mensaje-etiqueta {
+    background: #f0f0f0;
+    color: #666;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+}
+
+/* Formulario de nuevo mensaje */
+.nuevo-mensaje {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 2rem;
+}
+
+.nuevo-mensaje-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-grupo label {
+    color: #333;
+    font-weight: 500;
+}
+
+.form-grupo input,
+.form-grupo textarea,
+.form-grupo select {
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-grupo input:focus,
+.form-grupo textarea:focus,
+.form-grupo select:focus {
+    border-color: #8B4513;
+    outline: none;
+}
+
+.mensaje-botones {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.btn-enviar {
+    background: #8B4513;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-enviar:hover {
+    background: #654321;
+}
+
+.btn-cancelar {
+    background: none;
+    border: 2px solid #8B4513;
+    color: #8B4513;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cancelar:hover {
+    background: #8B4513;
+    color: white;
+}
+
+/* Paginación */
+.mensajes-paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.btn-pagina {
+    background: white;
+    border: 2px solid #8B4513;
+    color: #8B4513;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-pagina:hover,
+.btn-pagina.activo {
+    background: #8B4513;
+    color: white;
+}
+
+/* Estados de los mensajes */
+.estado-indicador {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    margin-left: 1rem;
+}
+
+.estado-leido {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.estado-no-leido {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.estado-urgente {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .mensajes-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .mensajes-controles {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .mensaje-filtro {
+        width: 100%;
+    }
+
+    .mensaje-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .mensaje-acciones {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mensaje-item {
+    animation: fadeIn 0.3s ease-out;
+}

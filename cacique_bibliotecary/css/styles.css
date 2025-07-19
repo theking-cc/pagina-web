@@ -1,0 +1,505 @@
+/* 
+* Cacique Bibliotecary - Estilos principales
+* Version: 2.0
+*/
+
+:root {
+  /* Paleta de colores */
+  --color-primary: #a0522d;
+  --color-primary-dark: #8b4513;
+  --color-secondary: #b22222;
+  --color-background: #f7f3ed;
+  --color-surface: #fffbe6;
+  --color-text: #3d2c1a;
+  --color-white: #fff;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
+
+  /* Bordes */
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 8px;
+
+  /* Espaciado */
+  --spacing-xs: 0.2rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  /* Transiciones */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--color-background);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  width: min(1100px, 100% - 3rem);
+  margin-inline: auto;
+  padding: 0 var(--spacing-lg);
+}
+
+/* Header y navegación */
+.main-header {
+  background: var(--color-surface);
+  border-bottom: 2px solid var(--color-primary);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-sm) 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xs);
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
+  transition: all var(--transition-normal);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.logo-container:hover .logo-img {
+  transform: rotate(5deg) scale(1.1);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+}
+
+.logo {
+  font-size: clamp(1.5rem, 2vw + 1rem, 2.2rem);
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  background: linear-gradient(45deg, var(--color-primary-dark), var(--color-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+.logo::after {
+  content: '📚';
+  position: absolute;
+  top: -10px;
+  right: -25px;
+  font-size: 1.2rem;
+  opacity: 0;
+  transform: translateY(10px) rotate(-15deg);
+  transition: all var(--transition-normal);
+}
+
+.logo-container:hover .logo::after {
+  opacity: 1;
+  transform: translateY(0) rotate(0);
+}
+
+nav {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--color-primary-dark);
+  text-decoration: none;
+  font-weight: 500;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-secondary);
+  transform: scaleX(0);
+  transition: transform var(--transition-fast);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+.nav-link:hover {
+  color: #b22222;
+}
+.nav-admin {
+  color: #b22222 !important;
+  font-weight: bold;
+}
+.hero {
+  background: linear-gradient(90deg,#fffbe6 60%,#f7f3ed 100%);
+  padding: 2.5rem 0 2rem 0;
+  text-align: center;
+}
+.hero h2 {
+  color: #a0522d;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+.hero p {
+  font-size: 1.2rem;
+  color: #3d2c1a;
+  margin-bottom: 1.5rem;
+}
+.buttons .btn, .buttons .btn-secondary {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0.5rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.btn {
+  background: #a0522d;
+  color: #fff;
+}
+.btn:hover {
+  background: #b22222;
+}
+.btn-secondary {
+  background: #fffbe6;
+  color: #a0522d;
+  border: 1px solid #a0522d;
+}
+.btn-secondary:hover {
+  background: #f7f3ed;
+  color: #b22222;
+}
+.catalogo {
+  background: #f7f3ed;
+  padding: 2rem 0;
+}
+.catalogo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+/* Tarjetas de libros */
+.libro-card {
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-md);
+  width: 280px;
+  text-align: center;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.libro-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.libro-card img {
+  width: 180px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-sm);
+  transition: transform var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.libro-card:hover img {
+  transform: scale(1.05);
+}
+
+.libro-card h3 {
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  margin: var(--spacing-sm) 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.libro-card p {
+  margin: var(--spacing-xs) 0;
+  color: var(--color-text);
+  opacity: 0.9;
+}
+
+.libro-card .estado {
+  font-weight: 600;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  display: inline-block;
+  margin: var(--spacing-xs) 0;
+}
+
+.libro-card .estado[data-estado="disponible"] {
+  background: #e6ffe6;
+  color: #228B22;
+}
+
+.libro-card .estado[data-estado="prestado"] {
+  background: #ffe6e6;
+  color: var(--color-secondary);
+}
+
+.libro-card .estado[data-estado="reservado"] {
+  background: #fff3e6;
+  color: #ff8c00;
+}
+
+.libro-card button {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin: 0 var(--spacing-xs);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.libro-card button:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+.libro-card button:hover {
+  background: #a0522d;
+  color: #fff;
+}
+.libro-card .favorito {
+  color: #b22222;
+  border-color: #b22222;
+}
+.libro-card .favorito:hover {
+  background: #b22222;
+  color: #fff;
+}
+.footer {
+  background: #fffbe6;
+  border-top: 2px solid #a0522d;
+  text-align: center;
+  padding: 1.2rem 0 1rem 0;
+  color: #8b4513;
+  font-size: 1rem;
+}
+.servicios {
+  background: #fffbe6;
+  padding: 2rem 0;
+}
+.servicio-list {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.servicio-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 1rem;
+  width: 300px;
+  margin-bottom: 1rem;
+}
+.servicio-card h3 {
+  color: #a0522d;
+  margin-top: 0;
+}
+.contact-section {
+  background: #f7f3ed;
+  padding: 2rem 0;
+}
+/* Formularios */
+.form-container {
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-xl);
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+}
+
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  border: 2px solid transparent;
+  background: var(--color-background);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: var(--color-white);
+  box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.1);
+}
+
+.form-control::placeholder {
+  color: rgba(61, 44, 26, 0.5);
+}
+.contact-form button {
+  background: #a0522d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.contact-form button:hover {
+  background: #b22222;
+}
+.mensajes {
+  background: #fffbe6;
+  padding: 2rem 0;
+}
+.mensajes-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+/* Tablas administrativas */
+.admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: var(--spacing-md) 0;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.admin-table th,
+.admin-table td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid rgba(160, 82, 45, 0.1);
+}
+
+.admin-table th {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.admin-table td {
+  background: var(--color-white);
+  transition: background var(--transition-fast);
+}
+
+.admin-table tbody tr:hover td {
+  background: rgba(160, 82, 45, 0.05);
+}
+
+.admin-table .action-btn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  margin: 0 var(--spacing-xs);
+}
+
+.admin-table .edit-btn {
+  background: #e6f3ff;
+  color: #0066cc;
+}
+
+.admin-table .delete-btn {
+  background: #ffe6e6;
+  color: var(--color-secondary);
+}
+
+.admin-table .reply-btn {
+  background: #e6ffe6;
+  color: #228B22;
+}
+
+.admin-table .action-btn:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+.admin-panel {
+  background: var(--color-surface);
+  padding: var(--spacing-xl) 0;
+  min-height: 80vh;
+}

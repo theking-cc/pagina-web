@@ -1,0 +1,119 @@
+/* Estilos para la sección de destacados */
+.destacados {
+    padding: 4rem 0;
+    background: #f8f9fa;
+}
+
+.destacados h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Contenedor del carrusel */
+.carrusel-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Botones de navegación */
+.carrusel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.carrusel-btn:hover {
+    background: #007bff;
+    color: white;
+}
+
+.carrusel-btn.prev {
+    left: 0;
+}
+
+.carrusel-btn.next {
+    right: 0;
+}
+
+/* Carrusel */
+.carrusel {
+    overflow: hidden;
+}
+
+.carrusel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carrusel-slide {
+    flex: 0 0 33.333%;
+    padding: 0 15px;
+}
+
+/* Libro destacado */
+.libro-destacado {
+    position: relative;
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.libro-destacado:hover {
+    transform: translateY(-5px);
+}
+
+.libro-destacado img {
+    width: 150px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.libro-destacado h3 {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+}
+
+.libro-destacado .rating {
+    color: #ffd700;
+    margin-top: 0.5rem;
+}
+
+/* Badge */
+.badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #007bff;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .carrusel-slide {
+        flex: 0 0 100%;
+    }
+    
+    .carrusel-container {
+        padding: 0 30px;
+    }
+}

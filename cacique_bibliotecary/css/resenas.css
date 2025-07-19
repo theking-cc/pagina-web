@@ -1,0 +1,163 @@
+/* Estilos para el sistema de calificación y reseñas */
+.rating {
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+.rating-stars {
+    color: #ffd700;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.rating-count {
+    color: #666;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+}
+
+.ver-resenas {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.ver-resenas:hover {
+    background: #e9ecef;
+}
+
+.resenas-container {
+    margin-top: 1rem;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+}
+
+.resena {
+    background: #f8f9fa;
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.resena-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.usuario {
+    font-weight: bold;
+}
+
+.fecha {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.estrellas {
+    color: #ffd700;
+}
+
+.resena-texto {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.agregar-resena {
+    width: 100%;
+    padding: 0.8rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.agregar-resena:hover {
+    background: #0056b3;
+}
+
+/* Modal para agregar reseñas */
+.modal-resena {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.modal-contenido {
+    position: relative;
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.cerrar-modal {
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.estrellas-input {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+}
+
+.estrellas-input span {
+    cursor: pointer;
+    color: #ddd;
+}
+
+.estrellas-input span.activa {
+    color: #ffd700;
+}
+
+.resena-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 1rem 0;
+    resize: vertical;
+}
+
+.enviar-resena {
+    width: 100%;
+    padding: 0.8rem;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.enviar-resena:hover {
+    background: #218838;
+}

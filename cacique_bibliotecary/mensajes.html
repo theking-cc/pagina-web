@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mensajes de Contacto | Cacique Bibliotecary</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/mensajes.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      background-color: #f5f5f5; 
+      line-height: 1.6;
+    }
+    
+    .main-header { 
+      background-color: #8B4513; 
+      color: white; 
+      padding: 1rem 0; 
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 0 20px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+    }
+    
+    .logo-img { 
+      height: 60px; 
+      vertical-align: middle; 
+      margin-right: 10px; 
+    }
+    
+    .logo { 
+      display: inline-block; 
+      vertical-align: middle; 
+      margin: 0; 
+      font-size: 1.8rem;
+    }
+    
+    nav { 
+      display: flex; 
+      gap: 20px; 
+    }
+    
+    .nav-link { 
+      color: white; 
+      text-decoration: none; 
+      padding: 10px 15px; 
+      border-radius: 5px; 
+      transition: background-color 0.3s; 
+    }
+    
+    .nav-link:hover { 
+      background-color: rgba(255,255,255,0.2); 
+    }
+    
+    .nav-admin { 
+      color: #FFD700 !important; 
+      font-weight: bold; 
+    }
+    
+    .mensajes { 
+      max-width: 1200px; 
+      margin: 2rem auto; 
+      padding: 0 20px; 
+      min-height: 60vh;
+    }
+    
+    .mensajes h2 { 
+      text-align: center; 
+      color: #8B4513; 
+      margin-bottom: 1rem; 
+      font-size: 2rem;
+    }
+    
+    .mensajes-tabla { 
+      width: 100%; 
+      border-collapse: collapse; 
+      background: white; 
+      border-radius: 8px; 
+      overflow: hidden; 
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+      margin-top: 1rem;
+    }
+    
+    .mensajes-tabla th, 
+    .mensajes-tabla td { 
+      padding: 12px 15px; 
+      text-align: left; 
+      border-bottom: 1px solid #ddd; 
+    }
+    
+    .mensajes-tabla th { 
+      background-color: #8B4513; 
+      color: white; 
+      font-weight: bold; 
+    }
+    
+    .mensajes-tabla tr:nth-child(even) { 
+      background-color: #f9f9f9; 
+    }
+    
+    .mensajes-tabla tr:hover { 
+      background-color: #f0f0f0; 
+    }
+    
+    .footer { 
+      background-color: #8B4513; 
+      color: white; 
+      text-align: center; 
+      padding: 1rem 0; 
+      margin-top: 2rem;
+    }
+    
+    .btn { 
+      background-color: #8B4513; 
+      color: white; 
+      border: none; 
+      padding: 10px 20px; 
+      border-radius: 5px; 
+      cursor: pointer; 
+      margin: 5px; 
+      transition: background-color 0.3s;
+    }
+    
+    .btn:hover { 
+      background-color: #A0522D; 
+    }
+    
+    .btn-danger { 
+      background-color: #dc3545; 
+    }
+    
+    .btn-danger:hover { 
+      background-color: #c82333; 
+    }
+    
+    .mensaje-item { 
+      background: white; 
+      margin: 1rem 0; 
+      padding: 1rem; 
+      border-radius: 8px; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+    }
+    
+    .mensaje-header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      margin-bottom: 0.5rem; 
+      padding-bottom: 0.5rem; 
+      border-bottom: 1px solid #eee;
+    }
+    
+    .mensaje-info { 
+      font-weight: bold; 
+      color: #8B4513; 
+    }
+    
+    .mensaje-fecha { 
+      color: #666; 
+      font-size: 0.9rem; 
+    }
+    
+    .mensaje-contenido { 
+      margin-top: 0.5rem; 
+    }
+    
+    .mensaje-asunto { 
+      font-weight: bold; 
+      color: #333; 
+      margin-bottom: 0.5rem; 
+    }
+    
+    .mensaje-texto { 
+      color: #555; 
+      line-height: 1.5; 
+    }
+
+    .controles-mensajes {
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .container { 
+        flex-direction: column; 
+        gap: 1rem; 
+      }
+      
+      nav { 
+        flex-wrap: wrap; 
+        justify-content: center; 
+      }
+      
+      .mensajes-tabla { 
+        font-size: 0.8rem; 
+      }
+      
+      .mensajes-tabla th, 
+      .mensajes-tabla td { 
+        padding: 8px; 
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="container">
+      <div style="display: flex; align-items: center;">
+        <img src="../../imagen/logo.png.jpg" alt="Logo Cacique Bibliotecary" class="logo-img">
+        <h1 class="logo">Cacique Bibliotecary</h1>
+      </div>
+      <nav>
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="catalogo.html" class="nav-link">Catálogo</a>
+        <a href="panel.html" class="nav-link">Mi Panel</a>
+        <a href="login.html" class="nav-link">Acceso</a>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+        <a href="mensajes.html" class="nav-link">Ver Mensajes</a>
+        <a href="admin.html" class="nav-link nav-admin">Administración</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="mensajes-section">
+    <div class="mensajes-container">
+      <div class="mensajes-header">
+        <h1><i class="fas fa-envelope"></i> Centro de Mensajes</h1>
+        <p>Gestiona y responde a todos los mensajes de contacto desde un solo lugar. 
+           Mantén una comunicación eficiente con los usuarios de la biblioteca.</p>
+      </div>
+
+      <!-- Estadísticas -->
+      <div class="mensajes-stats">
+        <div class="stat-card">
+          <div class="stat-icon" style="color: #1976d2;">
+            <i class="fas fa-inbox"></i>
+          </div>
+          <div class="stat-value" id="total-mensajes">0</div>
+          <div class="stat-label">Total Mensajes</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon" style="color: #f57c00;">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="stat-value" id="mensajes-nuevos">0</div>
+          <div class="stat-label">Sin Leer</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon" style="color: #c62828;">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <div class="stat-value" id="mensajes-urgentes">0</div>
+          <div class="stat-label">Urgentes</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon" style="color: #2e7d32;">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="stat-value" id="mensajes-respondidos">0</div>
+          <div class="stat-label">Respondidos</div>
+        </div>
+      </div>
+
+      <!-- Controles -->
+      <div class="mensajes-controls">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="search-mensajes" placeholder="Buscar en mensajes...">
+        </div>
+
+        <div class="filter-group">
+          <button class="btn-filter active" data-filter="all">
+            <i class="fas fa-layer-group"></i> Todos
+          </button>
+          <button class="btn-filter" data-filter="unread">
+            <i class="fas fa-envelope"></i> Sin leer
+          </button>
+          <button class="btn-filter" data-filter="urgent">
+            <i class="fas fa-exclamation-circle"></i> Urgentes
+          </button>
+          <button class="btn-filter" data-filter="replied">
+            <i class="fas fa-reply"></i> Respondidos
+          </button>
+        </div>
+
+        <div class="action-group">
+          <button class="btn-action btn-view" onclick="exportarMensajes()">
+            <i class="fas fa-download"></i> Exportar
+          </button>
+          <button class="btn-action btn-delete" onclick="limpiarMensajes()">
+            <i class="fas fa-trash-alt"></i> Limpiar
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabla de Mensajes -->
+      <div class="mensajes-table-container">
+        <table class="mensajes-table">
+          <thead>
+            <tr>
+              <th>Estado</th>
+              <th>Fecha</th>
+              <th>Remitente</th>
+              <th>Asunto</th>
+              <th>Mensaje</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="mensajes-tbody">
+            <!-- Se llenará dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mensaje cuando no hay datos -->
+      <div id="no-mensajes" style="display: none;" class="empty-state">
+        <i class="fas fa-inbox"></i>
+        <h3>No hay mensajes</h3>
+        <p>Cuando los usuarios envíen mensajes, aparecerán aquí.</p>
+        <button class="btn-filter" onclick="agregarMensajeDemo()">
+          <i class="fas fa-plus"></i> Agregar mensaje de prueba
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal de Mensaje -->
+  <div class="mensaje-modal" id="mensaje-modal">
+    <div class="mensaje-modal-content">
+      <div class="mensaje-modal-header">
+        <div class="mensaje-info">
+          <h3 id="modal-asunto"></h3>
+          <div class="mensaje-meta">
+            De: <span id="modal-remitente"></span> &bull;
+            <span id="modal-fecha"></span>
+          </div>
+        </div>
+        <button class="mensaje-close">&times;</button>
+      </div>
+      <div class="mensaje-body" id="modal-mensaje"></div>
+      <div class="mensaje-actions">
+        <button class="btn-action btn-reply" onclick="responderMensaje()">
+          <i class="fas fa-reply"></i> Responder
+        </button>
+        <button class="btn-action btn-delete" onclick="eliminarMensajeActual()">
+          <i class="fas fa-trash-alt"></i> Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Cacique Bibliotecary. Comprometidos con la excelencia académica.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Inicialización
+      let mensajesGuardados = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
+      let mensajeActual = null;
+      
+      // Elementos del DOM
+      const searchInput = document.getElementById('search-mensajes');
+      const filterButtons = document.querySelectorAll('.btn-filter');
+      const modal = document.getElementById('mensaje-modal');
+      const modalClose = modal.querySelector('.mensaje-close');
+      
+      // Mensajes de ejemplo
+      if (mensajesGuardados.length === 0) {
+        mensajesGuardados = [
+          {
+            id: 1,
+            nombre: "María González",
+            correo: "maria.gonzalez@email.com",
+            asunto: "Consulta sobre horarios",
+            mensaje: "Hola, me gustaría saber cuáles son los horarios de atención de la biblioteca durante las vacaciones de verano.",
+            fecha: "2025-07-19",
+            estado: "unread",
+            urgente: false,
+            respondido: false
+          },
+          {
+            id: 2,
+            nombre: "Carlos Rodríguez",
+            correo: "carlos.rodriguez@universidad.edu",
+            asunto: "Reserva de sala de estudio",
+            mensaje: "Necesito reservar una sala de estudio grupal para el próximo viernes. ¿Hay disponibilidad?",
+            fecha: "2025-07-18",
+            estado: "read",
+            urgente: true,
+            respondido: false
+          },
+          {
+            id: 3,
+            nombre: "Ana Martínez",
+            correo: "ana.martinez@estudiante.edu",
+            asunto: "Problema con renovación de libro",
+            mensaje: "No puedo renovar mi préstamo de 'Cien años de soledad' a través del sistema online. ¿Podrían ayudarme?",
+            fecha: "2025-07-17",
+            estado: "read",
+            urgente: false,
+            respondido: true
+          }
+        ];
+        localStorage.setItem('mensajesContacto', JSON.stringify(mensajesGuardados));
+      }
+
+      // Event Listeners
+      searchInput.addEventListener('input', filtrarMensajes);
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          filtrarMensajes();
+        });
+      });
+
+      modalClose.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+
+      window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+      
+      // Inicialización
+      actualizarEstadisticas();
+      mostrarMensajes();
+    });
+
+    function actualizarEstadisticas() {
+      const mensajes = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
+      
+      document.getElementById('total-mensajes').textContent = mensajes.length;
+      document.getElementById('mensajes-nuevos').textContent = 
+        mensajes.filter(m => m.estado === 'unread').length;
+      document.getElementById('mensajes-urgentes').textContent = 
+        mensajes.filter(m => m.urgente).length;
+      document.getElementById('mensajes-respondidos').textContent = 
+        mensajes.filter(m => m.respondido).length;
+    }
+
+    function mostrarMensajes(filtro = 'all') {
+      const mensajes = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
+      const tbody = document.getElementById('mensajes-tbody');
+      const noMensajes = document.getElementById('no-mensajes');
+      
+      if (mensajes.length === 0) {
+        tbody.innerHTML = '';
+        noMensajes.style.display = 'block';
+        return;
+      }
+
+      noMensajes.style.display = 'none';
+      tbody.innerHTML = '';
+
+      mensajes.forEach(mensaje => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>
+            <span class="badge badge-${mensaje.estado}">
+              ${mensaje.urgente ? '🔴 Urgente' : mensaje.estado === 'unread' ? '📫 Sin leer' : '📬 Leído'}
+            </span>
+          </td>
+          <td>${new Date(mensaje.fecha).toLocaleDateString('es-ES')}</td>
+          <td>
+            <strong>${mensaje.nombre}</strong>
+            <br>
+            <small>${mensaje.correo}</small>
+          </td>
+          <td>
+            <strong>${mensaje.asunto}</strong>
+          </td>
+          <td>${mensaje.mensaje.substring(0, 50)}${mensaje.mensaje.length > 50 ? '...' : ''}</td>
+          <td>
+            <div class="action-buttons">
+              <button class="btn-action btn-view" onclick="verMensaje(${mensaje.id})">
+                <i class="fas fa-eye"></i>
+              </button>
+              ${!mensaje.respondido ? `
+                <button class="btn-action btn-reply" onclick="responderMensaje(${mensaje.id})">
+                  <i class="fas fa-reply"></i>
+                </button>
+              ` : ''}
+              <button class="btn-action btn-delete" onclick="eliminarMensaje(${mensaje.id})">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function filtrarMensajes() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const filtroActivo = document.querySelector('.btn-filter.active').dataset.filter;
+      const mensajes = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
+      
+      const mensajesFiltrados = mensajes.filter(mensaje => {
+        const cumpleBusqueda = 
+          mensaje.nombre.toLowerCase().includes(searchTerm) ||
+          mensaje.correo.toLowerCase().includes(searchTerm) ||
+          mensaje.asunto.toLowerCase().includes(searchTerm) ||
+          mensaje.mensaje.toLowerCase().includes(searchTerm);
+
+        switch(filtroActivo) {
+          case 'unread':
+            return cumpleBusqueda && mensaje.estado === 'unread';
+          case 'urgent':
+            return cumpleBusqueda && mensaje.urgente;
+          case 'replied':
+            return cumpleBusqueda && mensaje.respondido;
+          default:
+            return cumpleBusqueda;
+        }
+      });
+
+      mostrarMensajesFiltrados(mensajesFiltrados);
+    }
+        
+    function mostrarMensajesFiltrados(mensajes) {
+      const tbody = document.getElementById('mensajes-tbody');
+      tbody.innerHTML = '';
+
+      if (mensajes.length === 0) {
+        document.getElementById('no-mensajes').style.display = 'block';
+        return;
+      }
+
+      document.getElementById('no-mensajes').style.display = 'none';
+      mensajes.forEach(mensaje => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>
+            <span class="badge badge-${mensaje.estado}">
+              ${mensaje.urgente ? '🔴 Urgente' : mensaje.estado === 'unread' ? '📫 Sin leer' : '📬 Leído'}
+            </span>
+          </td>
+          <td>${new Date(mensaje.fecha).toLocaleDateString('es-ES')}</td>
+          <td>
+            <strong>${mensaje.nombre}</strong>
+            <br>
+            <small>${mensaje.correo}</small>
+          </td>
+          <td>
+            <strong>${mensaje.asunto}</strong>
+          </td>
+          <td>${mensaje.mensaje.substring(0, 50)}${mensaje.mensaje.length > 50 ? '...' : ''}</td>
+          <td>
+            <div class="action-buttons">
+              <button class="btn-action btn-view" onclick="verMensaje(${mensaje.id})">
+                <i class="fas fa-eye"></i>
+              </button>
+              ${!mensaje.respondido ? `
+                <button class="btn-action btn-reply" onclick="responderMensaje(${mensaje.id})">
+                  <i class="fas fa-reply"></i>
+                </button>
+              ` : ''}
+              <button class="btn-action btn-delete" onclick="eliminarMensaje(${mensaje.id})">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function verMensaje(id) {
+      const mensajes = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
+      const mensaje = mensajes.find(m => m.id === id);
+      
+      if (!mensaje) return;
+
+      mensajeActual = mensaje;
+      
+      document.getElementById('modal-asunto').textContent = mensaje.asunto;
+      document.getElementById('modal-remitente').textContent = `${mensaje.nombre} (${mensaje.correo})`;
+      document.getElementById('modal-fecha').textContent = new Date(mensaje.fecha).toLocaleDateString('es-ES');
+      document.getElementById('modal-mensaje').textContent = mensaje.mensaje;
+
+      if (mensaje.estado === 'unread') {
+        mensaje.estado = 'read';
+        localStorage.setItem('mensajesContacto', JSON.stringify(mensajes));
+        actualizarEstadisticas();
+        mostrarMensajes();
+      }
+
+      modal.style.display = 'flex';
+    }
+
+    function agregarMensajeDemo() {
+      const mensajes = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
+      const nuevoMensaje = {
+        id: Date.now(),
+        nombre: "Usuario Demo",
+        correo: "demo@biblioteca.com",
+        asunto: "Mensaje de prueba",
+        mensaje: "Este es un mensaje de prueba generado automáticamente para demostrar la funcionalidad del sistema.",
+        fecha: new Date().toISOString(),
+        estado: 'unread',
+        urgente: Math.random() > 0.5,
+        respondido: false
+      };
+      
+      mensajes.unshift(nuevoMensaje);
+      localStorage.setItem('mensajesContacto', JSON.stringify(mensajes));
+      actualizarEstadisticas();
+      mostrarMensajes();
+      mostrarNotificacion('Mensaje de prueba agregado', 'success');
+    }
+
+    function responderMensaje(id) {
+      const mensajes = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
+      const mensaje = mensajes.find(m => m.id === id);
+      
+      if (!mensaje) return;
+
+      // Simulamos el envío de respuesta
+      mensaje.respondido = true;
+      localStorage.setItem('mensajesContacto', JSON.stringify(mensajes));
+      actualizarEstadisticas();
+      mostrarMensajes();
+      mostrarNotificacion('Respuesta enviada', 'success');
+      modal.style.display = 'none';
+    }
+
+    function eliminarMensaje(id) {
+      if (!confirm('¿Estás seguro de que deseas eliminar este mensaje?')) return;
+
+      const mensajes = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
+      const index = mensajes.findIndex(m => m.id === id);
+      
+      if (index === -1) return;
+
+      mensajes.splice(index, 1);
+      localStorage.setItem('mensajesContacto', JSON.stringify(mensajes));
+      actualizarEstadisticas();
+      mostrarMensajes();
+      mostrarNotificacion('Mensaje eliminado', 'warning');
+      modal.style.display = 'none';
+    }
+
+    function limpiarMensajes() {
+      if (!confirm('¿Estás seguro de que deseas eliminar todos los mensajes? Esta acción no se puede deshacer.')) return;
+      
+      localStorage.removeItem('mensajesContacto');
+      actualizarEstadisticas();
+      mostrarMensajes();
+      mostrarNotificacion('Todos los mensajes han sido eliminados', 'warning');
+    }
+
+    function exportarMensajes() {
+      const mensajes = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
+      
+      if (mensajes.length === 0) {
+        mostrarNotificacion('No hay mensajes para exportar', 'warning');
+        return;
+      }
+      
+      let contenido = 'MENSAJES DE CONTACTO - CACIQUE BIBLIOTECARY\n';
+      contenido += '='.repeat(50) + '\n\n';
+      
+      mensajes.forEach((mensaje, index) => {
+        contenido += `MENSAJE #${index + 1}\n`;
+        contenido += `-`.repeat(20) + '\n';
+        contenido += `ID: ${mensaje.id}\n`;
+        contenido += `Estado: ${mensaje.estado}${mensaje.urgente ? ' (Urgente)' : ''}\n`;
+        contenido += `Respondido: ${mensaje.respondido ? 'Sí' : 'No'}\n`;
+        contenido += `Nombre: ${mensaje.nombre}\n`;
+        contenido += `Email: ${mensaje.correo}\n`;
+        contenido += `Asunto: ${mensaje.asunto}\n`;
+        contenido += `Fecha: ${new Date(mensaje.fecha).toLocaleDateString('es-ES')}\n`;
+        contenido += `Mensaje:\n${mensaje.mensaje}\n\n`;
+      });
+      
+      const blob = new Blob([contenido], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `mensajes_cacique_bibliotecary_${new Date().toISOString().split('T')[0]}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      mostrarNotificacion('Mensajes exportados exitosamente', 'success');
+    }
+
+    function mostrarNotificacion(mensaje, tipo) {
+      const notification = document.createElement('div');
+      notification.className = `notification ${tipo}`;
+      
+      let icon = 'info-circle';
+      switch(tipo) {
+        case 'success':
+          icon = 'check-circle';
+          break;
+        case 'warning':
+          icon = 'exclamation-triangle';
+          break;
+        case 'error':
+          icon = 'exclamation-circle';
+          break;
+      }
+      
+      notification.innerHTML = `
+        <i class="fas fa-${icon}"></i>
+        ${mensaje}
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+          notification.remove();
+        }, 300);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

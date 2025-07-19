@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Usuario | Cacique Bibliotecary</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/panel.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="container">
+      <div style="display: flex; align-items: center;">
+        <img src="../../imagen/logo.png.jpg" alt="Logo Cacique Bibliotecary" class="logo-img">
+        <h1 class="logo">Cacique Bibliotecary</h1>
+      </div>
+      <nav>
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="catalogo.html" class="nav-link">Catálogo</a>
+        <a href="panel.html" class="nav-link">Mi Panel</a>
+        <a href="login.html" class="nav-link">Acceso</a>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+        <a href="mensajes.html" class="nav-link">Ver Mensajes</a>
+        <a href="admin.html" class="nav-link nav-admin">Administración</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PANEL DE USUARIO -->
+  <section class="user-panel">
+    <div class="container">
+      <h2 id="user-greeting">Mi Panel de Biblioteca</h2>
+      <p id="user-role"></p>
+      <p>Administra tus libros prestados y tu historial de lectura.</p>
+      
+      <div style="margin: 1rem 0;">
+        <button id="logout-btn">Cerrar sesión</button>
+        <button id="devolver-btn">Devolver libro</button>
+      </div>
+
+      <!-- Panel específico por rol -->
+      <div id="panel-estudiante" style="display: none;">
+        <h3>📘 Vista para Estudiantes</h3>
+        <p>Accede a tus libros y revisa tus fechas de devolución.</p>
+        
+        <div id="recomendacion-menu">
+          <h4 style="color:#A0522D;">Tus recomendaciones</h4>
+          <ul id="lista-recomendaciones"></ul>
+        </div>
+      </div>
+
+      <div id="panel-profesor" style="display: none;">
+        <h3>📙 Vista para Profesores</h3>
+        <p>Visualiza materiales recomendados y reserva de ejemplares.</p>
+        <button id="reservar-libro-btn">Reservar libro</button>
+      </div>
+
+      <div id="panel-bibliotecario" style="display: none;">
+        <h3>📗 Vista para Bibliotecarios</h3>
+        <p>Administra préstamos, usuarios y catálogo.</p>
+        <a href="admin.html" style="color: #8B4513; font-weight: bold;">Ir a Administración</a>
+      </div>
+
+      <!-- Panel de estadísticas -->
+      <div class="panel-overview">
+        <div class="panel-card">
+          <h3>Libros Prestados</h3>
+          <p><strong>3</strong> libros actualmente</p>
+        </div>
+        <div class="panel-card">
+          <h3>Artículos Vencidos</h3>
+          <p><strong>0</strong> artículos vencidos</p>
+        </div>
+        <div class="panel-card">
+          <h3>Renovaciones Disponibles</h3>
+          <p><strong>4</strong> renovaciones restantes</p>
+        </div>
+      </div>
+
+      <h3>Historial de Préstamos</h3>
+      <p id="fecha-acceso"></p>
+      <div id="tabla-prestamos"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Cacique Bibliotecary. Comprometidos con la excelencia académica.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts consolidados -->
+  <script src="js/panel.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/catalogo-animaciones.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Configuración inicial del usuario
+      const usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo')) || {
+        name: 'Usuario Demo',
+        role: 'Estudiante'
+      };
+
+      // Actualizar información del usuario
+      document.getElementById('user-greeting').textContent = `Bienvenido, ${usuarioActivo.name}`;
+      document.getElementById('user-role').textContent = `Rol: ${usuarioActivo.role}`;
+
+      // Mostrar panel según el rol del usuario
+      const panelEstudiante = document.getElementById('panel-estudiante');
+      const panelProfesor = document.getElementById('panel-profesor');
+      const panelBibliotecario = document.getElementById('panel-bibliotecario');
+
+      // Ocultar todos los paneles primero
+      panelEstudiante.style.display = 'none';
+      panelProfesor.style.display = 'none';
+      panelBibliotecario.style.display = 'none';
+
+      // Mostrar panel correspondiente al rol
+      switch(usuarioActivo.role) {
+        case 'Estudiante':
+          panelEstudiante.style.display = 'block';
+          break;
+        case 'Profesor':
+          panelProfesor.style.display = 'block';
+          break;
+        case 'Bibliotecario':
+          panelBibliotecario.style.display = 'block';
+          break;
+      }
+
+      // Generar recomendaciones dinámicas
+      generarRecomendaciones(usuarioActivo);
+
+      // Event listeners para botones
+      configurarEventListeners();
+
+      // Actualizar fecha de acceso
+      document.getElementById('fecha-acceso').textContent = 
+        `Último acceso: ${new Date().toLocaleDateString('es-ES')}`;
+    });
+
+    function generarRecomendaciones(usuario) {
+      const listaRecomendaciones = document.getElementById('lista-recomendaciones');
+      let recomendaciones = [];
+
+      // Recomendaciones según el rol
+      switch(usuario.role) {
+        case 'Estudiante':
+          recomendaciones = [
+            'El guardián del tiempo - Fantasía',
+            'La ciencia de los sueños - Ciencia',
+            'Historias del sur - Narrativa'
+          ];
+          break;
+        case 'Profesor':
+          recomendaciones = [
+            'Códigos ancestrales - Historia',
+            'El arte de enseñar - Educación',
+            'La ciencia de los sueños - Ciencia'
+          ];
+          break;
+        case 'Bibliotecario':
+          recomendaciones = [
+            'Misterios del bosque - Aventuras',
+            'Códigos ancestrales - Historia',
+            'El guardián del tiempo - Fantasía'
+          ];
+          break;
+      }
+
+      // Agregar favoritos del usuario
+      const favoritos = JSON.parse(localStorage.getItem('favoritosLibros')) || [];
+      if (favoritos.length > 0) {
+        recomendaciones.unshift(`Tus favoritos: ${favoritos.join(', ')}`);
+      }
+
+      // Renderizar recomendaciones
+      if (listaRecomendaciones) {
+        listaRecomendaciones.innerHTML = recomendaciones
+          .map(recomendacion => `<li>${recomendacion}</li>`)
+          .join('');
+      }
+    }
+
+    function configurarEventListeners() {
+      // Botón devolver libro
+      const devolverBtn = document.getElementById('devolver-btn');
+      if (devolverBtn) {
+        devolverBtn.addEventListener('click', function() {
+          alert('¡Libro devuelto exitosamente!');
+          // Aquí podrías agregar lógica para actualizar el estado
+        });
+      }
+
+      // Botón cerrar sesión
+      const logoutBtn = document.getElementById('logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+          if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+            localStorage.removeItem('usuarioActivo');
+            alert('Sesión cerrada correctamente.');
+            window.location.href = 'login.html';
+          }
+        });
+      }
+
+      // Botón reservar libro (para profesores)
+      const reservarBtn = document.getElementById('reservar-libro-btn');
+      if (reservarBtn) {
+        reservarBtn.addEventListener('click', function() {
+          alert('¡Libro reservado exitosamente!');
+          // Aquí podrías agregar lógica para gestionar reservas
+        });
+      }
+    }
+  </script>
+</body>
+</html> 

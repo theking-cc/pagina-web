@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administración | Cacique Bibliotecary</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <!-- Panel de Administración -->
+  <main class="admin-section">
+    <div class="admin-container">
+      <div class="admin-header">
+        <h1>Panel de Administración</h1>
+        <div class="alert alert-warning">
+          <i class="fas fa-exclamation-triangle"></i>
+          <div>
+            <strong>¡Advertencia!</strong>
+            <p>Este panel es exclusivo para la gestión administrativa. Las acciones realizadas aquí afectan a todos los datos del sistema.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estadísticas -->
+      <div class="admin-stats">
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon stat-users">
+              <i class="fas fa-users"></i>
+            </div>
+            <div>
+              <p class="stat-title">Usuarios Registrados</p>
+              <h3 class="stat-value" id="total-users">0</h3>
+              <p class="stat-change">+5% este mes</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon stat-books">
+              <i class="fas fa-book"></i>
+            </div>
+            <div>
+              <p class="stat-title">Libros en Catálogo</p>
+              <h3 class="stat-value" id="total-books">0</h3>
+              <p class="stat-change">+12 nuevos</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon stat-messages">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <p class="stat-title">Mensajes Nuevos</p>
+              <h3 class="stat-value" id="total-messages">0</h3>
+              <p class="stat-change">3 sin leer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon stat-loans">
+              <i class="fas fa-exchange-alt"></i>
+            </div>
+            <div>
+              <p class="stat-title">Préstamos Activos</p>
+              <h3 class="stat-value" id="total-loans">0</h3>
+              <p class="stat-change">2 por vencer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pestañas de navegación -->
+      <div class="admin-tabs">
+        <button class="tab-button active" data-tab="users">
+          <i class="fas fa-users"></i> Usuarios
+        </button>
+        <button class="tab-button" data-tab="books">
+          <i class="fas fa-book"></i> Catálogo
+        </button>
+        <button class="tab-button" data-tab="loans">
+          <i class="fas fa-exchange-alt"></i> Préstamos
+        </button>
+        <button class="tab-button" data-tab="messages">
+          <i class="fas fa-envelope"></i> Mensajes
+        </button>
+        <button class="tab-button" data-tab="reports">
+          <i class="fas fa-chart-bar"></i> Reportes
+        </button>
+        <button class="tab-button" data-tab="settings">
+          <i class="fas fa-cog"></i> Configuración
+        </button>
+      </div>
+
+      <!-- Contenido de las pestañas -->
+      <div class="tab-content">
+        <!-- Pestaña de Usuarios -->
+        <div class="tab-pane active" id="users-tab">
+          <div class="filters-bar">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Buscar usuarios..." id="search-users">
+            </div>
+            <button class="tab-button" onclick="showModal('add-user')">
+              <i class="fas fa-user-plus"></i> Nuevo Usuario
+            </button>
+          </div>
+
+          <div class="data-table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Rol</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="users-table-body">
+                <!-- Se llenará dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pagination" id="users-pagination">
+            <!-- Se generará dinámicamente -->
+          </div>
+        </div>
+
+        <!-- Pestaña de Mensajes -->
+        <div class="tab-pane" id="messages-tab">
+          <div class="filters-bar">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Buscar mensajes..." id="search-messages">
+            </div>
+            <select id="filter-messages">
+              <option value="all">Todos los mensajes</option>
+              <option value="unread">Sin leer</option>
+              <option value="read">Leídos</option>
+              <option value="urgent">Urgentes</option>
+            </select>
+          </div>
+
+          <div class="data-table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Remitente</th>
+                  <th>Asunto</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="messages-table-body">
+                <!-- Se llenará dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Pestaña de Configuración -->
+        <div class="tab-pane" id="settings-tab">
+          <div class="admin-form">
+            <h3>Configuración del Sistema</h3>
+            <div class="form-group">
+              <label>Límite de préstamos por usuario</label>
+              <input type="number" id="loan-limit" min="1" max="10" value="3">
+            </div>
+            <div class="form-group">
+              <label>Días máximos de préstamo</label>
+              <input type="number" id="loan-days" min="1" max="30" value="14">
+            </div>
+            <div class="form-group">
+              <label>Notificaciones por email</label>
+              <select id="email-notifications">
+                <option value="all">Todas</option>
+                <option value="important">Solo importantes</option>
+                <option value="none">Ninguna</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-submit">Guardar cambios</button>
+          </div>
+
+          <div class="admin-form" style="margin-top: 2rem;">
+            <h3>Mantenimiento</h3>
+            <div class="alert alert-warning">
+              <i class="fas fa-exclamation-triangle"></i>
+              <div>
+                <strong>¡Precaución!</strong>
+                <p>Estas acciones son irreversibles. Asegúrate de tener una copia de seguridad antes de proceder.</p>
+              </div>
+            </div>
+            <button id="backup-btn" class="btn-action btn-edit">
+              <i class="fas fa-download"></i> Crear copia de seguridad
+            </button>
+            <button id="clear-data-btn" class="btn-action btn-delete">
+              <i class="fas fa-trash-alt"></i> Limpiar TODOS los datos
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modales -->
+  <div class="modal" id="add-user-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Añadir Nuevo Usuario</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <form id="add-user-form" class="admin-form">
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" required>
+        </div>
+        <div class="form-group">
+          <label>Rol</label>
+          <select required>
+            <option value="user">Usuario</option>
+            <option value="admin">Administrador</option>
+            <option value="librarian">Bibliotecario</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit">Crear Usuario</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

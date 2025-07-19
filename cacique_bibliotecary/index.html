@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cacique Bibliotecary</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/resenas.css" />
+  <link rel="stylesheet" href="css/carrusel.css" />
+  <link rel="stylesheet" href="css/notificaciones.css" />
+  <link rel="stylesheet" href="css/catalogo.css" />
+</head>
+<body>
+  <!-- Sistema de Notificaciones -->
+  <div id="notification-center" class="notification-center">
+    <div class="notification-header">
+      <h3>Centro de Notificaciones</h3>
+      <button id="close-notifications">×</button>
+    </div>
+    <div class="notification-list">
+      <!-- Las notificaciones se añadirán dinámicamente aquí -->
+    </div>
+  </div>
+
+  <!-- Botón de notificaciones -->
+  <div id="notification-button" class="notification-button">
+    <span class="notification-icon">🔔</span>
+    <span class="notification-badge">0</span>
+  </div>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="container">
+      <img src="img/logo.png" alt="Logo Cacique Bibliotecary" class="logo-img" style="height:60px;vertical-align:middle;margin-right:10px;">
+      <h1 class="logo" style="display:inline-block;vertical-align:middle;">Cacique Bibliotecary</h1>
+      <nav>
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="catalogo.html" class="nav-link">Catálogo</a>
+        <a href="panel.html" class="nav-link">Mi Panel</a>
+        <a href="login.html" class="nav-link">Acceso</a>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+        <a href="mensajes.html" class="nav-link">Ver Mensajes</a>
+        <a href="admin.html" class="nav-link nav-admin" style="color:#B22222;font-weight:bold;">Administración</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO / BIENVENIDA -->
+  <section class="hero">
+    <div class="container">
+      <h2>Bienvenidos a Cacique Bibliotecary</h2>
+      <p>
+        Su sistema integral de gestión de biblioteca digital diseñado para la
+        excelencia académica, el préstamo fluido de libros y el apoyo a la investigación académica.
+      </p>
+      <div class="buttons">
+        <a href="catalogo.html" class="btn">Explorar catálogo</a>
+        <a href="login.html" class="btn-secondary">Acceso / Registro</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARRUSEL DE DESTACADOS -->
+  <section class="destacados">
+    <div class="container">
+      <h2>Libros Destacados</h2>
+      <div class="carrusel-container">
+        <button class="carrusel-btn prev">❮</button>
+        <div class="carrusel">
+          <div class="carrusel-track">
+            <div class="carrusel-slide">
+              <div class="libro-destacado">
+                <div class="badge">Más prestado</div>
+                <img src="https://images-na.ssl-images-amazon.com/images/I/81eB+7+CkUL.jpg" alt="Harry Potter">
+                <h3>Harry Potter y la piedra filosofal</h3>
+                <div class="rating">★★★★★</div>
+              </div>
+            </div>
+            <div class="carrusel-slide">
+              <div class="libro-destacado">
+                <div class="badge">Mejor valorado</div>
+                <img src="https://images-na.ssl-images-amazon.com/images/I/81AFxK8K5bL.jpg" alt="Cien años de soledad">
+                <h3>Cien años de soledad</h3>
+                <div class="rating">★★★★★</div>
+              </div>
+            </div>
+            <div class="carrusel-slide">
+              <div class="libro-destacado">
+                <div class="badge">Recomendado</div>
+                <img src="https://images-na.ssl-images-amazon.com/images/I/81rtt0y1pEL.jpg" alt="Don Quijote">
+                <h3>Don Quijote de la Mancha</h3>
+                <div class="rating">★★★★½</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carrusel-btn next">❯</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN REGISTRO -->
+  <section id="registro" class="registro">
+    <div class="container">
+      <h2>Registro de Usuario</h2>
+      <p>Regístrate para acceder a todos los servicios de la biblioteca digital.</p>
+      <form id="registro-form" class="form">
+        <div class="form-group">
+          <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" name="password" placeholder="Contraseña" required>
+        </div>
+        <div class="form-group">
+          <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmar contraseña" required>
+        </div>
+        <div class="form-group">
+          <select id="tipo-usuario" name="tipo-usuario" required>
+            <option value="">Selecciona tipo de usuario</option>
+            <option value="estudiante">Estudiante</option>
+            <option value="profesor">Profesor</option>
+            <option value="investigador">Investigador</option>
+          </select>
+        </div>
+        <button type="submit" class="btn">Registrarse</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- SECCIÓN CATÁLOGO -->
+  <section id="catalogo" class="catalogo">
+    <div class="container">
+      <h2>Catálogo de Libros</h2>
+      <p>Explora nuestra colección digital de libros disponibles para préstamo y consulta.</p>
+      <div class="search-section">
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Buscar por título, autor o género...">
+          <button id="search-btn" class="btn">Buscar</button>
+        </div>
+        <div class="filters">
+          <div class="filter-group">
+            <select id="genero-filter">
+              <option value="">Todos los géneros</option>
+              <option value="fantasia">Fantasía</option>
+              <option value="novela">Novela</option>
+              <option value="clasico">Clásico</option>
+              <option value="ciencia-ficcion">Ciencia Ficción</option>
+              <option value="drama">Drama</option>
+              <option value="misterio">Misterio</option>
+              <option value="romance">Romance</option>
+              <option value="historia">Historia</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <select id="disponibilidad-filter">
+              <option value="">Todos los estados</option>
+              <option value="disponible">Disponible</option>
+              <option value="prestado">Prestado</option>
+              <option value="reservado">Reservado</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <select id="idioma-filter">
+              <option value="">Todos los idiomas</option>
+              <option value="espanol">Español</option>
+              <option value="ingles">Inglés</option>
+              <option value="frances">Francés</option>
+              <option value="aleman">Alemán</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <select id="rating-filter">
+              <option value="">Todas las valoraciones</option>
+              <option value="5">5 estrellas</option>
+              <option value="4">4+ estrellas</option>
+              <option value="3">3+ estrellas</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="catalogo-grid" style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
+        <div class="libro-card">
+          <img src="https://images-na.ssl-images-amazon.com/images/I/81eB+7+CkUL.jpg" alt="Portada Harry Potter y la piedra filosofal" style="width:150px;height:220px;object-fit:cover;border-radius:4px;">
+          <h3>Harry Potter y la piedra filosofal</h3>
+          <p>J.K. Rowling</p>
+          <p class="estado" style="color:#228B22;">Disponible</p>
+          <div class="rating">
+            <span class="rating-stars" data-rating="4.5">
+              ★★★★½
+            </span>
+            <span class="rating-count">(128 reseñas)</span>
+          </div>
+          <div style="margin-top:0.5rem;display:flex;gap:0.5rem;justify-content:center;">
+            <button><span>📚</span> Reservar</button>
+            <button><span>🔄</span> Devolver</button>
+            <button class="favorito"><span>⭐</span> Favorito</button>
+          </div>
+          <button class="ver-resenas">Ver reseñas</button>
+          <div class="resenas-container" style="display:none;">
+            <div class="resena">
+              <div class="resena-header">
+                <span class="usuario">María G.</span>
+                <span class="fecha">15/07/2025</span>
+                <span class="estrellas">★★★★★</span>
+              </div>
+              <p class="resena-texto">Excelente libro para iniciar en el mundo mágico de Harry Potter.</p>
+            </div>
+            <button class="agregar-resena">Escribir reseña</button>
+          </div>
+        </div>
+        <div class="libro-card">
+          <img src="https://images-na.ssl-images-amazon.com/images/I/91bYsX41DVL.jpg" alt="Portada El Principito" style="width:150px;height:220px;object-fit:cover;border-radius:4px;">
+          <h3>El Principito</h3>
+          <p>Antoine de Saint-Exupéry</p>
+          <p class="estado" style="color:#228B22;">Disponible</p>
+          <div style="margin-top:0.5rem;display:flex;gap:0.5rem;justify-content:center;">
+            <button><span>📚</span> Reservar</button>
+            <button><span>🔄</span> Devolver</button>
+            <button class="favorito"><span>⭐</span> Favorito</button>
+          </div>
+        </div>
+        <div class="libro-card">
+          <img src="https://images-na.ssl-images-amazon.com/images/I/81AFxK8K5bL.jpg" alt="Portada Cien años de soledad" style="width:150px;height:220px;object-fit:cover;border-radius:4px;">
+          <h3>Cien años de soledad</h3>
+          <p>Gabriel García Márquez</p>
+          <p class="estado" style="color:#B22222;">Prestado</p>
+        </div>
+        <div class="libro-card">
+          <img src="https://images-na.ssl-images-amazon.com/images/I/71aFt4+OTOL.jpg" alt="Portada 1984" style="width:150px;height:220px;object-fit:cover;border-radius:4px;">
+          <h3>1984</h3>
+          <p>George Orwell</p>
+          <p class="estado" style="color:#228B22;">Disponible</p>
+          <div style="margin-top:0.5rem;display:flex;gap:0.5rem;justify-content:center;">
+            <button><span>📚</span> Reservar</button>
+            <button><span>🔄</span> Devolver</button>
+            <button class="favorito"><span>⭐</span> Favorito</button>
+          </div>
+        </div>
+        <div class="libro-card">
+          <img src="https://images-na.ssl-images-amazon.com/images/I/81iqZ2HHD-L.jpg" alt="Portada Orgullo y prejuicio" style="width:150px;height:220px;object-fit:cover;border-radius:4px;">
+          <h3>Orgullo y prejuicio</h3>
+          <p>Jane Austen</p>
+          <p class="estado" style="color:#228B22;">Disponible</p>
+        </div>
+        <div class="libro-card">
+          <img src="https://images-na.ssl-images-amazon.com/images/I/81vpsIs58WL.jpg" alt="Portada Los juegos del hambre" style="width:150px;height:220px;object-fit:cover;border-radius:4px;">
+          <h3>Los juegos del hambre</h3>
+          <p>Suzanne Collins</p>
+          <p class="estado" style="color:#228B22;">Disponible</p>
+          <div style="margin-top:0.5rem;display:flex;gap:0.5rem;justify-content:center;">
+            <button><span>📚</span> Reservar</button>
+            <button><span>🔄</span> Devolver</button>
+            <button class="favorito"><span>⭐</span> Favorito</button>
+          </div>
+        </div>
+        <div class="libro-card" style="width:220px;text-align:center;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:1rem;">
+          <img src="https://images-na.ssl-images-amazon.com/images/I/81rtt0y1pEL.jpg" alt="Portada Don Quijote de la Mancha" style="width:150px;height:220px;object-fit:cover;border-radius:4px;">
+          <h3>Don Quijote de la Mancha</h3>
+          <p>Miguel de Cervantes</p>
+          <p class="estado" style="color:#228B22;">Disponible</p>
+          <div style="margin-top:0.5rem;display:flex;gap:0.5rem;justify-content:center;">
+            <button><span>📚</span> Reservar</button>
+            <button><span>🔄</span> Devolver</button>
+            <button class="favorito"><span>⭐</span> Favorito</button>
+          </div>
+        </div>
+        <div class="libro-card" style="width:220px;text-align:center;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:1rem;">
+          <img src="https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg" alt="Portada La sombra del viento" style="width:150px;height:220px;object-fit:cover;border-radius:4px;">
+          <h3>La sombra del viento</h3>
+          <p>Carlos Ruiz Zafón</p>
+          <p class="estado" style="color:#228B22;">Disponible</p>
+          <div style="margin-top:0.5rem;display:flex;gap:0.5rem;justify-content:center;">
+            <button><span>📚</span> Reservar</button>
+            <button><span>🔄</span> Devolver</button>
+            <button class="favorito"><span>⭐</span> Favorito</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Paginación -->
+      <div class="paginacion">
+        <button id="prev-page" disabled>Anterior</button>
+        <span class="pagina-actual">Página 1 de 5</span>
+        <button id="next-page">Siguiente</button>
+      </div>
+
+      <!-- Mensaje de no resultados -->
+      <div id="no-resultados" class="no-resultados" style="display: none;">
+        No se encontraron libros que coincidan con tu búsqueda.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN ACCESO / LOGIN -->
+  <section id="login" class="login">
+    <div class="container">
+      <h2>Acceso de Usuarios</h2>
+      <p>Inicia sesión para gestionar tus préstamos y acceder a servicios personalizados.</p>
+      <form id="login-form" class="form">
+        <div class="form-group">
+          <input type="email" id="login-email" name="email" placeholder="Correo electrónico" required>
+        </div>
+        <div class="form-group">
+          <input type="password" id="login-password" name="password" placeholder="Contraseña" required>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="recordar" name="recordar">
+          <label for="recordar">Recordar sesión</label>
+        </div>
+        <button type="submit" class="btn">Iniciar Sesión</button>
+        <p class="form-footer">
+          <a href="#" id="olvido-password">¿Olvidaste tu contraseña?</a>
+        </p>
+      </form>
+    </div>
+  </section>
+  <!-- SECCIÓN SERVICIOS -->
+  <section id="servicios" class="servicios">
+    <div class="container">
+      <h2>Servicios de la Biblioteca</h2>
+      <div class="servicio-list">
+        <div class="servicio-card">
+          <h3>Préstamos y renovaciones de libros</h3>
+          <p>
+            Tome prestados fácilmente libros de nuestro catálogo digital con opciones de renovación flexibles para extender su tiempo de lectura.
+          </p>
+        </div>
+        <div class="servicio-card">
+          <h3>Acceso al catálogo digital</h3>
+          <p>
+            Explore nuestra colección completa por título, autor o género con estado de disponibilidad en tiempo real.
+          </p>
+        </div>
+        <div class="servicio-card">
+          <h3>Devoluciones seguras</h3>
+          <p>
+            Cómodo proceso de devolución digital con actualizaciones automáticas de estado y seguimiento del historial de préstamos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Cacique Bibliotecary. Comprometidos con la excelencia académica y los estándares de accesibilidad.</p>
+    </div>
+  </footer>
+  <script src="js/script.js"></script>
+  <script src="js/catalogo-animaciones.js"></script>
+  <script src="js/resenas.js"></script>
+  <script src="js/carrusel.js"></script>
+  <script src="js/notificaciones.js"></script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo | Cacique Bibliotecary</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/catalogo.css" />
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <!-- CATÁLOGO -->
+  <main class="catalogo-container">
+    <div class="catalogo-header">
+      <h1>Catálogo de la Biblioteca Digital</h1>
+      <p>Explora nuestra colección de más de 10,000 recursos académicos</p>
+      
+      <!-- Barra de búsqueda y filtros -->
+      <div class="search-section">
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Buscar por título, autor, ISBN...">
+          <button id="search-btn">
+            <span class="icon">🔍</span>
+            Buscar
+          </button>
+        </div>
+
+        <div class="filters">
+          <div class="filter-group">
+            <select id="genero-filter">
+              <option value="">Todos los géneros</option>
+              <option value="fantasia">Fantasía</option>
+              <option value="ciencia">Ciencia</option>
+              <option value="historia">Historia</option>
+              <option value="educacion">Educación</option>
+              <option value="literatura">Literatura</option>
+              <option value="tecnologia">Tecnología</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <select id="disponibilidad-filter">
+              <option value="">Disponibilidad</option>
+              <option value="disponible">Disponible</option>
+              <option value="reservado">Reservado</option>
+              <option value="prestado">Prestado</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <select id="ordenar-filter">
+              <option value="relevancia">Ordenar por relevancia</option>
+              <option value="titulo-asc">Título: A-Z</option>
+              <option value="titulo-desc">Título: Z-A</option>
+              <option value="fecha-nuevo">Más recientes</option>
+              <option value="fecha-antiguo">Más antiguos</option>
+              <option value="popularidad">Más populares</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <select id="idioma-filter">
+              <option value="">Todos los idiomas</option>
+              <option value="espanol">Español</option>
+              <option value="ingles">Inglés</option>
+              <option value="frances">Francés</option>
+              <option value="aleman">Alemán</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="view-options">
+          <button class="view-btn active" data-view="grid">
+            <span class="icon">📚</span> Grid
+          </button>
+          <button class="view-btn" data-view="list">
+            <span class="icon">📝</span> Lista
+          </button>
+        </div>
+      </div>
+
+      <!-- Tags de filtros activos -->
+      <div class="active-filters" id="active-filters">
+        <!-- Se llenarán dinámicamente -->
+      </div>
+    </div>
+
+      <div class="catalogo-grid">
+        <!-- Libro 1 -->
+        <div class="libro-card" data-genero="fantasia" data-idioma="espanol">
+          <img src="../imagen/guardian-tiempo.jpg" alt="Portada El guardián del tiempo" class="libro-portada">
+          <div class="libro-info">
+            <h3>El guardián del tiempo</h3>
+            <p><strong>Autor:</strong> Mario Jiménez</p>
+            <p><strong>Género:</strong> Fantasía</p>
+            <p><strong>Año:</strong> 2022</p>
+            <p><strong>ISBN:</strong> 978-84-376-0494-7</p>
+            <p class="estado disponible">Disponible</p>
+            <div class="libro-actions">
+              <button class="btn-reservar">Reservar libro</button>
+              <button class="btn-favorito">★ Favorito</button>
+            </div>
+            <div class="libro-rating">
+              <span class="stars">★★★★☆</span>
+              <span class="reviews">(45 reseñas)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Libro 2 -->
+        <div class="libro-card" data-genero="ciencia" data-idioma="espanol">
+          <img src="../imagen/ciencia-suenos.jpg" alt="Portada La ciencia de los sueños" class="libro-portada">
+          <div class="libro-info">
+            <h3>La ciencia de los sueños</h3>
+            <p><strong>Autor:</strong> Lucía Torres</p>
+            <p><strong>Género:</strong> Ciencia</p>
+            <p><strong>Año:</strong> 2019</p>
+            <p><strong>ISBN:</strong> 978-950-23-1234-5</p>
+            <p class="estado reservado">Reservado</p>
+            <div class="libro-actions">
+              <button class="btn-reservar" disabled>Reservado</button>
+              <button class="btn-favorito">★ Favorito</button>
+            </div>
+            <div class="libro-rating">
+              <span class="stars">★★★★★</span>
+              <span class="reviews">(89 reseñas)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Libro 3 -->
+        <div class="libro-card" data-genero="literatura" data-idioma="espanol">
+          <img src="../imagen/historias-sur.jpg" alt="Portada Historias del sur" class="libro-portada">
+          <div class="libro-info">
+            <h3>Historias del sur</h3>
+            <p><strong>Autor:</strong> Pablo Fernández</p>
+            <p><strong>Género:</strong> Literatura</p>
+            <p><strong>Año:</strong> 2016</p>
+            <p><strong>ISBN:</strong> 978-987-04-5678-9</p>
+            <p class="estado disponible">Disponible</p>
+            <div class="libro-actions">
+              <button class="btn-reservar">Reservar libro</button>
+              <button class="btn-favorito">★ Favorito</button>
+            </div>
+            <div class="libro-rating">
+              <span class="stars">★★★★☆</span>
+              <span class="reviews">(67 reseñas)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Libro 4 -->
+        <div class="libro-card" data-genero="aventuras" data-idioma="espanol">
+          <img src="../imagen/misterios-bosque.jpg" alt="Portada Misterios del bosque" class="libro-portada">
+          <div class="libro-info">
+            <h3>Misterios del bosque</h3>
+            <p><strong>Autor:</strong> Carla Ruiz</p>
+            <p><strong>Género:</strong> Aventuras</p>
+            <p><strong>Año:</strong> 2021</p>
+            <p><strong>ISBN:</strong> 978-84-08-1234-5</p>
+            <p class="estado disponible">Disponible</p>
+            <div class="libro-actions">
+              <button class="btn-reservar">Reservar libro</button>
+              <button class="btn-favorito">★ Favorito</button>
+            </div>
+            <div class="libro-rating">
+              <span class="stars">★★★★★</span>
+              <span class="reviews">(123 reseñas)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Libro 5 -->
+        <div class="libro-card" data-genero="historia" data-idioma="espanol">
+          <img src="../imagen/codigos-ancestrales.jpg" alt="Portada Códigos ancestrales" class="libro-portada">
+          <div class="libro-info">
+            <h3>Códigos ancestrales</h3>
+            <p><strong>Autor:</strong> Sergio López</p>
+            <p><strong>Género:</strong> Historia</p>
+            <p><strong>Año:</strong> 2017</p>
+            <p><strong>ISBN:</strong> 978-987-12-3456-7</p>
+            <p class="estado reservado">Reservado</p>
+            <div class="libro-actions">
+              <button class="btn-reservar" disabled>Reservado</button>
+              <button class="btn-favorito">★ Favorito</button>
+            </div>
+            <div class="libro-rating">
+              <span class="stars">★★★★☆</span>
+              <span class="reviews">(92 reseñas)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Libro 6 -->
+        <div class="libro-card" data-genero="educacion" data-idioma="espanol">
+          <img src="../imagen/arte-ensenar.jpg" alt="Portada El arte de enseñar" class="libro-portada">
+          <div class="libro-info">
+            <h3>El arte de enseñar</h3>
+            <p><strong>Autor:</strong> Teresa Gómez</p>
+            <p><strong>Género:</strong> Educación</p>
+            <p><strong>Año:</strong> 2023</p>
+            <p><strong>ISBN:</strong> 978-950-34-5678-9</p>
+            <p class="estado disponible">Disponible</p>
+            <div class="libro-actions">
+              <button class="btn-reservar">Reservar libro</button>
+              <button class="btn-favorito">★ Favorito</button>
+            </div>
+            <div class="libro-rating">
+              <span class="stars">★★★★★</span>
+              <span class="reviews">(34 reseñas)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/catalogo-animaciones.js"></script>
+</body>
+</html>
